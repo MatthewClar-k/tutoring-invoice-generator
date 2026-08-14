@@ -536,7 +536,7 @@ git push
 | Same day appears twice | warning | Probably a duplicate entry, possibly two real sessions |
 | No `TOTAL:` line at all | warning | Reconciliation impossible; month proceeds **unverified** and says so |
 
-- [ ] **Step 1: Write the failing tests**
+- [x] **Step 1: Write the failing tests**
 
 `tests/test_reconcile.py`:
 ```python
@@ -610,12 +610,12 @@ def test_duplicate_day_warns():
     assert any("15" in p.message for p in warnings(problems))
 ```
 
-- [ ] **Step 2: Run the tests to verify they fail**
+- [x] **Step 2: Run the tests to verify they fail**
 
 Run: `.venv/Scripts/python.exe -m pytest tests/test_reconcile.py -v`
 Expected: FAIL — `ModuleNotFoundError: No module named 'invoice.reconcile'`
 
-- [ ] **Step 3: Implement `invoice/reconcile.py`**
+- [x] **Step 3: Implement `invoice/reconcile.py`**
 
 ```python
 """Verify a parsed month against the checksum the notes already carry."""
@@ -680,12 +680,12 @@ def check(month: Month, config_rate: int) -> list[Problem]:
     return problems
 ```
 
-- [ ] **Step 4: Run the tests to verify they pass**
+- [x] **Step 4: Run the tests to verify they pass**
 
 Run: `.venv/Scripts/python.exe -m pytest tests/test_reconcile.py -v`
 Expected: all PASS
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add invoice/reconcile.py tests/test_reconcile.py
