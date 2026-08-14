@@ -133,7 +133,7 @@ notes.txt
 invoices/
 ```
 
-- [ ] **Step 3: Write `requirements.txt`, `pyproject.toml`, `config.example.json`**
+- [x] **Step 3: Write `requirements.txt`, `pyproject.toml`, `config.example.json`**
 
 `requirements.txt`:
 ```
@@ -159,14 +159,14 @@ testpaths = ["tests"]
 }
 ```
 
-- [ ] **Step 4: Install dependencies**
+- [x] **Step 4: Install dependencies**
 
 ```bash
 .venv/Scripts/python.exe -m pip install -r requirements.txt
 ```
 Expected: `reportlab-5.0.0-py3-none-any.whl` installs with no compilation.
 
-- [ ] **Step 5: Write `sample_notes.txt`**
+- [x] **Step 5: Write `sample_notes.txt`**
 
 Exactly the real format, including the two trailing `Paid.` markers and the unpaid April block:
 
@@ -199,7 +199,7 @@ APRIL:
 TOTAL: R1000 (4x250)
 ```
 
-- [ ] **Step 6: Write `invoice/__init__.py` (empty) and `invoice/model.py`**
+- [x] **Step 6: Write `invoice/__init__.py` (empty) and `invoice/model.py`**
 
 ```python
 """Data structures for the invoice pipeline. No logic lives here."""
@@ -272,7 +272,7 @@ class Invoice:
     total: int
 ```
 
-- [ ] **Step 7: Verify the skeleton**
+- [x] **Step 7: Verify the skeleton**
 
 Run: `.venv/Scripts/python.exe -m pytest`
 Expected: exits 5 / "no tests ran" — collection succeeds with no import errors.
@@ -280,7 +280,7 @@ Expected: exits 5 / "no tests ran" — collection succeeds with no import errors
 Run: `.venv/Scripts/python.exe -c "import invoice.model; print(invoice.model.MONTH_NUMBERS['APRIL'])"`
 Expected: `4`
 
-- [ ] **Step 8: Commit and push**
+- [x] **Step 8: Commit and push**
 
 The repo and the `origin` remote already exist from the planning session, so this is a
 plain push — do **not** run `gh repo create` again.
