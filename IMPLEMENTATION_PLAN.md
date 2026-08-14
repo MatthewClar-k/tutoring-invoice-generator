@@ -321,7 +321,7 @@ Tolerated: list numbering absent or `1.`/`1)`; hyphen, en dash or em dash; `hr`/
 
 **Not** tolerated: an unrecognised line inside a month block becomes an **error** `Problem` carrying its line number and original text. Silent tolerance here is exactly how a month gets under-billed.
 
-- [ ] **Step 1: Write the failing tests**
+- [x] **Step 1: Write the failing tests**
 
 `tests/test_parser.py`:
 ```python
@@ -402,12 +402,12 @@ def test_empty_file_yields_no_months_and_no_crash():
     assert notes.months == []
 ```
 
-- [ ] **Step 2: Run the tests to verify they fail**
+- [x] **Step 2: Run the tests to verify they fail**
 
 Run: `.venv/Scripts/python.exe -m pytest tests/test_parser.py -v`
 Expected: FAIL — `ModuleNotFoundError: No module named 'invoice.parser'`
 
-- [ ] **Step 3: Implement `invoice/parser.py`**
+- [x] **Step 3: Implement `invoice/parser.py`**
 
 ```python
 """Parse iPhone Notes tutoring text into structured data. Pure: no I/O."""
@@ -498,12 +498,12 @@ def parse_notes(text: str, default_year: int | None = None) -> ParsedNotes:
     return ParsedNotes(year=year, months=months, problems=problems)
 ```
 
-- [ ] **Step 4: Run the tests to verify they pass**
+- [x] **Step 4: Run the tests to verify they pass**
 
 Run: `.venv/Scripts/python.exe -m pytest tests/test_parser.py -v`
 Expected: all PASS
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add invoice/parser.py tests/test_parser.py
