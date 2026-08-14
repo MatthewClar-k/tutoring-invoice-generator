@@ -899,7 +899,7 @@ git push
 - Output `invoices/INV-2026-04_April.pdf`. Never overwrite without `--force`.
 - Exit code 1 if any month had an error; 0 otherwise.
 
-- [ ] **Step 1: Implement `invoice/cli.py`**
+- [x] **Step 1: Implement `invoice/cli.py`**
 
 ```python
 """Command-line entry point. The only module that touches the console."""
@@ -1024,7 +1024,7 @@ if __name__ == "__main__":
     sys.exit(main())
 ```
 
-- [ ] **Step 2: Write `Generate Invoice.bat`**
+- [x] **Step 2: Write `Generate Invoice.bat`**
 
 ```bat
 @echo off
@@ -1039,7 +1039,7 @@ pause
 
 `cd /d "%~dp0"` makes the project root the working directory so `python -m invoice.cli` resolves the package; every path is quoted because the install path contains spaces. `pause` keeps the window open so the summary and any errors stay readable.
 
-- [ ] **Step 3: Run end-to-end against the sample**
+- [x] **Step 3: Run end-to-end against the sample**
 
 ```bash
 cp config.example.json config.json
@@ -1047,7 +1047,7 @@ cp config.example.json config.json
 ```
 Expected: February and March both reconcile clean and report `skipped: marked Paid.`; April generates `invoices/INV-2026-04_April.pdf` at R1000; exit code 0.
 
-- [ ] **Step 4: Verify the refusal path**
+- [x] **Step 4: Verify the refusal path**
 
 ```bash
 sed 's/22nd - 2hr/22nd - banana/' sample_notes.txt > broken_notes.txt
@@ -1056,16 +1056,16 @@ rm broken_notes.txt
 ```
 Expected: February is REFUSED with **two** errors — the parser's "Unrecognised line inside a month block" naming line 8 and `'22nd - banana'`, and the reconciler's "Hour count disagrees: sessions add up to 4, but the note states 6". No February PDF is produced and `exit=1`. March and April still process normally. This is the double-net working: even if the grammar had silently swallowed that line, the checksum would still have caught the missing two hours.
 
-- [ ] **Step 5: Verify the rate-change path**
+- [x] **Step 5: Verify the rate-change path**
 
 Temporarily set `"hourly_rate": 300` in `config.json` and re-run with `--all --force`.
 Expected: **all three** months print a rate-mismatch warning and still bill at R250. Every month in the sample carries its own `(NxR)` rate, and `effective_rate` lets the note's rate win — so a config change cannot retroactively alter a month whose rate is already on record. A new month written without a `TOTAL:` line would pick up R300. Confirm April's PDF still totals R1000, then restore `"hourly_rate": 250`.
 
-- [ ] **Step 6: Write `README.md`**
+- [x] **Step 6: Write `README.md`**
 
 Cover: what it does; one-time setup (`python -m venv .venv`, `pip install -r requirements.txt`, copy `config.example.json` → `config.json` and fill it in); daily use (save the Notes text as `notes.txt`, drag onto `Generate Invoice.bat`); the accepted notes format with the tolerance table from M1; what the reconciler checks and why a month gets refused; the flags (`--month`, `--all`, `--force`); and a note that `config.json`, `notes.txt` and `invoices/` are gitignored deliberately.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add invoice/cli.py "Generate Invoice.bat" README.md
