@@ -1,0 +1,7 @@
+{
+  "provider": { "name": "Your Name", "email": "you@example.com", "phone": "+27 00 000 0000" },
+  "client":   { "name": "Client Name", "address": "" },
+  "hourly_rate": 250,
+  "currency": "R",
+  "invoice_prefix": "INV"
+}
