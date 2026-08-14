@@ -711,7 +711,7 @@ reportlab is chosen over `weasyprint` (needs GTK system libraries on Windows) an
 
 All styling constants sit at the top of this one module so appearance is adjustable without reading logic.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `tests/test_render.py`:
 ```python
@@ -748,12 +748,12 @@ def test_render_creates_missing_parent_directory(tmp_path):
     assert out.exists()
 ```
 
-- [ ] **Step 2: Run the test to verify it fails**
+- [x] **Step 2: Run the test to verify it fails**
 
 Run: `.venv/Scripts/python.exe -m pytest tests/test_render.py -v`
 Expected: FAIL — `ModuleNotFoundError: No module named 'invoice.render'`
 
-- [ ] **Step 3: Implement `invoice/render.py`**
+- [x] **Step 3: Implement `invoice/render.py`**
 
 ```python
 """Render an Invoice to PDF. All appearance constants live at the top."""
@@ -857,12 +857,12 @@ def render_pdf(invoice: Invoice, out_path: str | Path) -> Path:
     return out_path
 ```
 
-- [ ] **Step 4: Run the test to verify it passes**
+- [x] **Step 4: Run the test to verify it passes**
 
 Run: `.venv/Scripts/python.exe -m pytest tests/test_render.py -v`
 Expected: both PASS
 
-- [ ] **Step 5: Eyeball the output once**
+- [x] **Step 5: Eyeball the output once**
 
 ```bash
 .venv/Scripts/python.exe -c "import tests.test_render as t; from invoice.render import render_pdf; render_pdf(t.build_invoice(), 'invoices/_preview.pdf')"
@@ -870,7 +870,7 @@ start invoices\_preview.pdf
 ```
 Confirm the layout reads as a professional document, then delete `invoices/_preview.pdf`. Adjust the constants at the top of `render.py` if anything looks off.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add invoice/render.py tests/test_render.py
