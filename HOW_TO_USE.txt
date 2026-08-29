@@ -1,0 +1,46 @@
+HOW TO GENERATE AN INVOICE
+===========================
+
+1. Log tutoring sessions in iPhone Notes as usual, in the same format you
+   already use (date + duration per session).
+
+2. When a month is done, add a line at the end of that month like:
+       TOTAL: R1500 (6x250)
+   (hours x rate = total). If the month has already been paid, add a
+   "Paid." line right after the total.
+
+3. Select the note's text and save/export it as a plain .txt file, named
+   notes.txt, into this folder:
+       C:\Users\mattc\Downloads\Vibe Coding\Tutoring Invoice Generator
+
+   (Overwrite the old notes.txt. It's fine for the file to contain more
+   than one month — the tool reads all of them at once.)
+
+4. Drag notes.txt onto "Generate Invoice.bat" in this folder.
+   (If the file is already named notes.txt, you can just double-click
+   the .bat instead.)
+
+5. A console window opens and shows what it found. For each month it will
+   either:
+       - write a PDF into the invoices\ folder, or
+       - skip it, because it's already marked "Paid.", or
+       - REFUSE it and print an error, if something doesn't add up
+         (e.g. the hours don't match the TOTAL line, or a line couldn't
+         be read). Fix the note and re-run if that happens.
+
+6. Press any key to close the window. Your PDF is in:
+       invoices\INV-<year>-<month>_<MonthName>.pdf
+
+That's it — nothing else needs to change about how sessions get logged.
+
+USEFUL OPTIONS (run from a terminal in this folder, instead of dragging)
+--------------------------------------------------------------------------
+"Generate Invoice.bat" --month AUGUST     only generate that one month
+"Generate Invoice.bat" --all              also regenerate months already marked Paid.
+"Generate Invoice.bat" --force            overwrite a PDF that already exists
+
+If the hourly rate ever changes, update "hourly_rate" in config.json.
+Past months keep whatever rate is already written in their own TOTAL line,
+so old invoices won't change.
+
+See README.md for the full accepted note format and other details.
