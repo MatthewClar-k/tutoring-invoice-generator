@@ -1084,18 +1084,18 @@ This milestone needs information the plan deliberately does not contain. **Ask M
 - Contact email and phone
 - The family's name for the "Bill To" block, and address if wanted
 
-- [ ] **Step 1: Fill in `config.json`** with the real values (rate stays 250).
+- [x] **Step 1: Fill in `config.json`** with the real values (rate stays 250).
 
-- [ ] **Step 2: Save the real Notes text** as `notes.txt` in the project root.
+- [x] **Step 2: Save the real Notes text** as `notes.txt` in the project root.
 
-- [ ] **Step 3: Run the full suite** — `.venv/Scripts/python.exe -m pytest` — expect all green.
+- [x] **Step 3: Run the full suite** — `.venv/Scripts/python.exe -m pytest` — expect all green.
 
-- [ ] **Step 4: Drag `notes.txt` onto `Generate Invoice.bat`.**
+- [x] **Step 4: Drag `notes.txt` onto `Generate Invoice.bat`.**
 Expected: a console summary listing every month, paid ones skipped, unpaid ones generated, window held open by `pause`.
 
-- [ ] **Step 5: Open the generated PDF and confirm** the real name and contact details, the invoice number (`INV-2026-<MM>`), today's issue date, the Bill To block, one dated line per session, R250/hr, and a total that matches the `TOTAL:` line in the original note.
+- [x] **Step 5: Open the generated PDF and confirm** the real name and contact details, the invoice number (`INV-2026-<MM>`), today's issue date, the Bill To block, one dated line per session, R250/hr, and a total that matches the `TOTAL:` line in the original note.
 
-- [ ] **Step 6: Confirm nothing personal is staged**
+- [x] **Step 6: Confirm nothing personal is staged**
 
 ```bash
 git status --short
@@ -1103,7 +1103,7 @@ git check-ignore -v config.json notes.txt invoices/
 ```
 Expected: `config.json`, `notes.txt` and `invoices/` all report as ignored, and `git status` shows none of them.
 
-- [ ] **Step 7: Final commit and push**
+- [x] **Step 7: Final commit and push**
 
 ```bash
 git add -A
