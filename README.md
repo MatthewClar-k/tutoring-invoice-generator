@@ -120,9 +120,47 @@ Generate Invoice.bat [notes.txt] [--month APRIL] [--all] [--force]
 - `--all`: also regenerate months already marked `Paid.` (default: skipped).
 - `--force`: overwrite a PDF that already exists (default: left alone).
 
+## On iPhone
+
+The same pipeline (parse → reconcile → refuse or render) also runs as a web
+app in `web/`, entirely inside Safari. Nothing is uploaded: your notes and
+settings stay on the phone.
+
+**Use it**
+
+1. Open https://matthewclar-k.github.io/tutoring-invoice-generator/ in Safari,
+   tap Share → **Add to Home Screen**. It works offline after the first visit.
+2. The first time, fill in **Settings** (your details, client, rate). They're
+   saved on the phone only.
+3. In Notes, select the month's text and copy it. In the app, tap **Paste from
+   clipboard** (or paste into the box).
+4. Each month shows the same checks as the CLI. Tap **Create PDF** on a month
+   that passes, then pick Save to Files, Mail, WhatsApp, etc. from the share sheet.
+   Months marked `Paid.` have a **Generate anyway** button. Refused months
+   have no button until the note is fixed.
+
+**Deploy (one-time)**
+
+GitHub Pages on a free account needs a public repository. Nothing personal is
+tracked (see below), so: make the repo public, then go to Settings → Pages →
+Source: **GitHub Actions**. Every push to `main` that touches `web/` runs the
+JS tests and redeploys (`.github/workflows/pages.yml`).
+
+**Develop**
+
+`web/invoice.js` is a line-for-line port of `parser.py`, `reconcile.py` and
+`build_invoice`. If you change the Python rules, change it too. Run both test
+suites:
+
+```bash
+.venv/Scripts/python.exe -m pytest -q
+node --test tests/web/*.mjs
+.venv/Scripts/python.exe -m http.server 8765 --directory web
+```
+
 ## Gitignored by design
 
 `config.json`, `notes.txt`, and `invoices/` are all excluded from version
-control. The repository is private, but a family's name and contact details
-still don't belong in git history — history is much harder to redact than a
-file.
+control. A family's name and contact details don't belong in git history,
+because history is much harder to redact than a file. That's also why the
+repository can be public for GitHub Pages.

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tutoring Invoices</title>
+<meta name="description" content="Turn tutoring notes into PDF invoices.">
+<meta name="theme-color" content="#1F3A5F">
+<meta name="color-scheme" content="light dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Invoices">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1>Tutoring Invoices</h1>
+</header>
+<main>
+  <details id="settings" class="panel">
+    <summary>Settings <span id="settings-hint" class="hint"></span></summary>
+    <form id="settings-form" autocomplete="off">
+      <p class="note">Saved only on this device.</p>
+      <label>Your name <input name="provider_name" autocomplete="name" required></label>
+      <label>Your email <input name="provider_email" type="email" autocomplete="email"></label>
+      <label>Your phone <input name="provider_phone" type="tel" autocomplete="tel"></label>
+      <label>Client name <input name="client_name" required></label>
+      <label>Client address <textarea name="client_address" rows="3"></textarea></label>
+      <div class="row">
+        <label>Hourly rate <input name="hourly_rate" type="number" inputmode="decimal" min="0" step="any" required></label>
+        <label>Currency <input name="currency" maxlength="6" value="R"></label>
+        <label>Invoice prefix <input name="invoice_prefix" maxlength="12" value="INV"></label>
+      </div>
+      <button type="submit" class="primary">Save settings</button>
+    </form>
+  </details>
+
+  <section class="panel">
+    <h2>Notes</h2>
+    <label class="sr" for="notes">Paste your tutoring note</label>
+    <textarea id="notes" rows="10" placeholder="Paste your note here, e.g.&#10;TUTORING 2026&#10;&#10;APRIL:&#10; 1. 15th - 1hr&#10;TOTAL: R250 (1x250)"></textarea>
+    <div class="actions">
+      <button type="button" id="paste">Paste from clipboard</button>
+      <label class="button" for="file">Open .txt file</label>
+      <input id="file" type="file" accept=".txt,text/plain" hidden>
+      <button type="button" id="clear" class="quiet">Clear</button>
+    </div>
+    <p id="msg" class="note" role="status"></p>
+  </section>
+
+  <section id="results" aria-live="polite"></section>
+</main>
+<script src="vendor/jspdf.umd.min.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
